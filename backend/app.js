@@ -25,13 +25,13 @@ app.post('/api/products', (req, res, next) => {
       ...req.body  
   });
   product.save()
-     .then( product => res.status(201).json({product}) )
+     .then( product => res.status(201).json({product:product}) )
      .catch( error => res.status(400).json({error}));
 });
 
 app.get('/api/products/:id', (req, res, next) => {
   Product.findOne({ _id: req.params.id })
-    .then(product => res.status(200).json(product))
+    .then(product => res.status(200).json({product:product}))
     .catch(error => res.status(404).json({ error }));
 });
 
